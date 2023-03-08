@@ -49,7 +49,7 @@ class MenuOption extends StatelessWidget {
                     padding: EdgeInsets.all(3),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      color: _badgeColor ?? appRed,
+                      color: _badgeColor ?? appPink,
                     ),
                     child: Text(badgeTxt, style: TextStyle(color: _badgeTextColor ?? kScaffoldLight , fontSize: 8),),
                   ))
