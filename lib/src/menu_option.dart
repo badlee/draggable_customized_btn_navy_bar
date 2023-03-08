@@ -37,7 +37,7 @@ class MenuOption extends StatelessWidget {
                     child: Icon(_iconData, color: _colorIcon, size: 30.0),
                   ),
                 ),
-                if(_badge != null && _badge.isNotEmpty)
+                if(_badge != null && _badge!.isNotEmpty)
                   Positioned(
                     top: 0,
                     right: 0,
