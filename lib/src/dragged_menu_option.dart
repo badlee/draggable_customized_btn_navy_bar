@@ -5,6 +5,7 @@ class DraggedMenuOption extends StatefulWidget {
   final Color? colorIcon;
   final Color? badgeColor;
   final Color? badgeTextColor;
+  final String? badge;
   final GestureTapCallback? onTap;
   final double? translate;
   final StatusDragged statusDragged;
@@ -19,6 +20,7 @@ class DraggedMenuOption extends StatefulWidget {
       this.colorIcon,
       this.badgeColor,
       this.badgeTextColor,
+      this.badge,
       this.onTap,
       this.translate,
       required this.statusDragged,
@@ -76,13 +78,13 @@ class DraggedMenuOptionState extends State<DraggedMenuOption> {
                   transform:
                       Matrix4.translationValues(widget.translate!, .0, .0),
                   child: MenuOption(widget.iconData, widget.colorIcon, widget.badgeColor, widget.badgeTextColor,
-                      widget.onTap, !widget.settingVisible),
+                      widget.onTap, !widget.settingVisible, widget.badge),
                 )
               : Container(
                   transform:
                       Matrix4.translationValues(widget.translate!, .0, .0),
                   child: MenuOption(widget.iconData, widget.colorIcon, widget.badgeColor, widget.badgeTextColor,
-                      widget.onTap, !widget.settingVisible),
+                      widget.onTap, !widget.settingVisible, widget.badge),
                 ))
           : Container(
               width: 30.0,
