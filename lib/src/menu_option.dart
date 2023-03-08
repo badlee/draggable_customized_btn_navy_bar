@@ -15,9 +15,13 @@ class MenuOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var badgeTxt = (_badge ?? "");
-    var isNum = double.tryParse(badgeTxt) != null;
-    var maxLength = isNum ? 2 : 4;
-    badgeTxt = badgeTxt.substring(0,badgeTxt.length > maxLength ? maxLength : badgeTxt.length) + (badgeTxt.length > maxLength ? (isNum ? "+" : ".") : "");
+    var total = double.tryParse(badgeTxt);
+    if(total != null ){
+      badgeTxt= total > 99 ? "99+" : "${total!.toInt()}";
+    }else{
+      var maxLength = 4;
+      badgeTxt = badgeTxt.substring(0,badgeTxt.length > maxLength ? (maxLength - 1) : badgeTxt.length) + (badgeTxt.length > maxLength ? "." : "");
+    }
     return ButtonScale(
         activeOpacity: true,
         onTap: _enable
