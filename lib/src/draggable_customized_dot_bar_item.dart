@@ -13,8 +13,11 @@ class DraggableCustomizedDotBarItem {
 
   /// Event with you press the item.
   final String? name;
+  
+  /// Badge indicator
+  final String? badge;
 
   /// Constructor
   const DraggableCustomizedDotBarItem(this.keyItem,
-      {this.name, this.icon, this.onTap});
+      {this.name, this.icon, this.onTap, this.badge});
 }
