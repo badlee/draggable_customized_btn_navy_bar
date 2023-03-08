@@ -41,6 +41,12 @@ class DraggableCustomizedBtnNavyBar extends StatefulWidget {
 
   /// Unselected Icon color
   final Color unSelectedColorIcon;
+  
+  /// Unselected Icon color
+  final Color? badgeColor;
+
+  /// Unselected Icon color
+  final Color? badgeTextColor;
 
   /// Navigator Container Background color
   final Color navigatorBackground;
@@ -121,6 +127,8 @@ class DraggableCustomizedBtnNavyBar extends StatefulWidget {
     this.borderRadius = const BorderRadius.vertical(top: Radius.circular(60.0)),
     this.selectedColorIcon = appPink,
     this.unSelectedColorIcon = kScaffoldLight,
+    this.badgeColor,
+    this.badgeTextColor,
     this.boxShadow,
     this.navigatorBackground = appBlue,
     // this.settingBackground = appPink,
@@ -909,6 +917,8 @@ class _DraggableCustomizedBtnNavyBarState
         colorIcon: (item.keyItem == widget.keyItemSelected)
             ? widget.selectedColorIcon
             : widget.unSelectedColorIcon,
+        badgeTextColor: widget.badgeTextColor,
+        badgeColor: widget.badgeColor,
         onTap: () => item.onTap!(item.keyItem),
         translate:
             _translateItemList.isNotEmpty ? _translateItemList[index] : .0,
