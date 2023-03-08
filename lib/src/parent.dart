@@ -917,6 +917,7 @@ class _DraggableCustomizedBtnNavyBarState
         colorIcon: (item.keyItem == widget.keyItemSelected)
             ? widget.selectedColorIcon
             : widget.unSelectedColorIcon,
+        badge : item!.badge,
         badgeTextColor: widget.badgeTextColor,
         badgeColor: widget.badgeColor,
         onTap: () => item.onTap!(item.keyItem),
