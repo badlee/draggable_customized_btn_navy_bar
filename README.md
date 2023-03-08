@@ -17,7 +17,7 @@ The Btn Nav bat is very beautiful and many people likes it so much. For these re
 
 
 ## Live Preview
-![image](https://github.com/Mohamed-7018/Mohamed-7018/blob/main/assets/DraggableCustomizedBtnNavyBar%20%20(2).gif)
+![image](https://github.com/Mohamed-7018/Mohamed-7018/raw/main/assets/DraggableCustomizedBtnNavyBar%20%20(2).gif)
 
 
 ## Supported platforms
@@ -64,6 +64,7 @@ import 'package:draggable_customized_btn_navy_bar/draggable_customized_btn_navy_
 ## Basic Setup
 ```Dart
 String _itemSelected = 'item-1';
+DraggableCustomizedBtnNavyBar navyBarController = DraggableCustomizedBtnNavyBar();
 ...
 ..
 .
@@ -72,6 +73,8 @@ Scaffold(
     children: <Widget>[
       .... // Your App Home
       DraggableCustomizedBtnNavyBar(
+          key : Key("myNav"), // configuration Scopes
+          controller : navyBarController,
           keyItemSelected: _itemSelected,
           hiddenItems: <DraggableCustomizedDotBarItem>[
               DraggableCustomizedDotBarItem('item-4', icon: Icons.cloud, name: 'Nube', onTap: (itemSelected) { /* event selected */ }),
@@ -96,10 +99,12 @@ Scaffold(
 
 ## Customization
 
-### DraggableCustomizedBtnNavyBar
+### *DraggableCustomizedBtnNavyBar*
 
 |      Attribute          |Description
 |----------------|-------------------------------
+|`key`| Scope configuration name
+|`controller`| Controle Badges and check if settings is open
 |`items`| List of items to be displayed in the navigation bar
 |`hiddenItems`| List of items that will be hidden
 |`maximumNumberOfDisplayItems`| max number of displayed items - default:5
@@ -116,6 +121,8 @@ Scaffold(
 |`settingBackground`| Setting Container Background color (Hidden items)
 |`iconSetting`| Settings button icon
 |`iconSettingColor`| Settings button icon color
+|`badgeColor`| Badge Indicator color
+|`badgeTextColor`| Badge Text color
 |`settingTitleText`| Setting Title Text
 |`settingTitleColor`| Setting Title color
 |`settingSubTitleText`| Setting Sub-Title Text
@@ -133,14 +140,24 @@ Scaffold(
 |`onAddItem`| Event when you add a new option to the navigation bar, this has as parameters the item you add and the list of options. `onAddItem: (BottomPersonalizedDotBarItem itemAdd, List<BottomPersonalizedDotBarItem> items) { /* Your action */ }`
 |`onRemoveItem`| Event when you delete an option from the navigation bar, this has as parameters the element to delete and the list of hidden options. `onRemoveItem: (BottomPersonalizedDotBarItem itemRemove, List<BottomPersonalizedDotBarItem> hiddenItems) { /* Your action */ }`
 
-### DraggableCustomizedDotBarItem
+
+### *DraggableCustomizedBtnNavyBar*
+|      Attribute          |Description
+|----------------|-------------------------------
+|`settingsIsOpen`| Check if settings is Open `bool settingsIsOpen`
+|`hasBadge`| Check if badge exist. `bool hasBadge(String keyItem)`
+|`getBadge`| Get badge value return `null` if badge not found. `String? getBadge(String keyItem)`
+|`setBadge`| Set badge value. `void setBadge(String keyItem, dynamic badge)`
+
+
+### *DraggableCustomizedDotBarItem*
 |      Attribute          |Description
 |----------------|-------------------------------
 |`keyItem`| Unique key
 |`icon`| Item icon
 |`name`| Item name
+|`badge`| Initial Item badge value 
 |`onTap`| Event with you press the item. `onTap: (String keyItem) { /* Your action */ }`
-
 
 ## License & Accesability
 * This is the first version of my package  so if you see any problems you're free to open an issue.

@@ -14,8 +14,8 @@ class DraggableCustomizedDotBarItem {
   /// Event with you press the item.
   final String? name;
 
-  /// Badge builder
-  final dynamic badge;
+  /// Initial Item badge value
+  final String? badge;
 
   /// Constructor
   const DraggableCustomizedDotBarItem(this.keyItem,

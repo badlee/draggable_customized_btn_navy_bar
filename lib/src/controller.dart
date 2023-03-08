@@ -1,63 +1,49 @@
 part of draggable_customized_btn_navy_bar;
 
 class DraggableCustomizedBtnNavyBarController {
-  Map<String, ValueListenable> _badges = {};
-  StreamController<DragItemUpdate>? _dragItemUpdateStream;
-  void _initBadges(List<DraggableCustomizedDotBarItem?> items,
+  final Map<String, ValueNotifier<String>> _badges = {};
+  _DraggableCustomizedBtnNavyBarState? _parent;
+  DraggableCustomizedBtnNavyBarController _initBadges(List<DraggableCustomizedDotBarItem?> items,
       List<DraggableCustomizedDotBarItem?> hiddenItems) {
-    items.forEach((item) {
-      _badges[item.keyItem] = _getValueListenable(item.badge);
+    items.whereType<DraggableCustomizedDotBarItem>().forEach((item) {
+      _badges[item.keyItem] = _getValueNotifier(item.badge);
     });
 
-    hiddenItems.forEach((item) {
-      _badges[item.keyItem] = _getValueListenable(item.badge);
+    hiddenItems.whereType<DraggableCustomizedDotBarItem>().forEach((item) {
+      _badges[item.keyItem] = _getValueNotifier(item.badge);
     });
+    return this;
+  }
+  String _getValue(badge)=>badge is String || badge is num ? badge.toString() : (badge is bool && badge == true ? "!": "");
+  _getValueNotifier(dynamic badge) {
+    return ValueNotifier<String>(_getValue(badge));
+  }
+
+  
+  bool get settingsIsOpen {
+    return _parent?._settingVisible ?? false;
+  }
+
+  
+  ValueNotifier<String>? _getNotifier(String keyItem) {
+    return _badges[keyItem];
   }
   
-  void _initDragItemUpdate(StreamController<DragItemUpdate>? dragItemUpdateStream){
-    _dragItemUpdateStream = dragItemUpdateStream;
+  bool hasBadge(String keyItem) {
+    return _badges.containsKey(keyItem);
   }
 
-  _getValueListenable(dynamic _badge) {
-    if (_badge is! ValueListenable) {
-      _badge = ValueNotifier(_badge);
-    }
-    return _badge;
+  String? getBadge(String keyItem) {
+    return _badges[keyItem]?.value;
+  }
+  void setBadge(String keyItem, badge) {
+    _badges[keyItem]?.value = _getValue(badge);
   }
 
-  ValueListenable? _badge(String id) {
-    return _badges[id];
+  String? operator [](String keyItem) {
+    return getBadge(keyItem);
   }
-  bool get settingsIsOpen {
-    return false;
-  }
-  void openSettings(){
-
-  }
-  void closeSettings(){
-    
-  }
-  void toogleSettings(){
-
-  }
-
-  void setBadge(String id, value) {
-    _badge(id)?.value = value;
-  }
-
-  getBadge(String id) {
-    return _badge(id)?.value;
-  }
-
-  hasBadge(String id) {
-    return _badges.containsKey(id);
-  }
-
-  operator [](String id) {
-    return getBadge(id);
-  }
-
-  void operator []=(String id, value) {
-    return setBadge(id, value);
+  void operator []=(String keyItem,badge) {
+    setBadge(keyItem,badge);
   }
 }

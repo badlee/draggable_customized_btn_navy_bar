@@ -1,0 +1,6 @@
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec.lock
+.dart_tool
+# .gitignore
+.DS_Store

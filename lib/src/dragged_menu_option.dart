@@ -12,7 +12,7 @@ class DraggedMenuOption extends StatefulWidget {
   final StreamController<DragItemUpdate>? dragItemUpdateStream;
   final bool settingVisible;
   final bool animationItemNavigator;
-  final ValueListenable badge;
+  final ValueNotifier<String>? badge;
 
   const DraggedMenuOption(
       {Key? key,

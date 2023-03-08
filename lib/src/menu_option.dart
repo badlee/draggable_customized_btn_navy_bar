@@ -7,7 +7,7 @@ class MenuOption extends StatelessWidget {
   final Color? _badgeTextColor;
   final GestureTapCallback? _onTap;
   final bool _enable;
-  final ValueListenable _badge;
+  final ValueListenable<String>? _badge;
 
   const MenuOption(this._iconData, this._colorIcon, this._badgeColor,
       this._badgeTextColor, this._onTap, this._enable, this._badge,
@@ -26,6 +26,8 @@ class MenuOption extends StatelessWidget {
             color: Colors.transparent,
             alignment: Alignment.center,
             child: SizedBox(
+              height: 40,
+              width: 40,
               child: Stack(
                 fit: StackFit.loose,
                 children: [
@@ -34,15 +36,14 @@ class MenuOption extends StatelessWidget {
                       child: Icon(_iconData, color: _colorIcon, size: 30.0),
                     ),
                   ),
+                  if(_badge != null)
                   ValueListenableBuilder(
-                      valueListenable: _badge,
+                      valueListenable: _badge!,
                       builder: (BuildContext context, dynamic badge,
                               Widget? child) =>
                           _getBadge(badge)),
                 ],
               ),
-              height: 40,
-              width: 40,
             )));
   }
 
@@ -52,7 +53,7 @@ class MenuOption extends StatelessWidget {
       badgeTxt = (badge?.toString() ?? "").trim().toUpperCase();
       var total = double.tryParse(badgeTxt);
       if (total != null) {
-        badgeTxt = total > 99 ? "99+" : "${total!.toInt()}";
+        badgeTxt = total > 99 ? "99+" : "${total.toInt()}";
       } else {
         var maxLength = 3;
         badgeTxt = badgeTxt.substring(

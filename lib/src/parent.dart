@@ -115,7 +115,7 @@ class DraggableCustomizedBtnNavyBar extends StatefulWidget {
       List<DraggableCustomizedDotBarItem?>? hiddenItems)? onRemoveItem;
 
   /// Constructor
-  const DraggableCustomizedBtnNavyBar({
+  DraggableCustomizedBtnNavyBar({
     required this.items,
     required this.hiddenItems,
     Key? key,
@@ -159,7 +159,7 @@ class DraggableCustomizedBtnNavyBar extends StatefulWidget {
     // this.textDoneColor = Colors.black,
     // this.dotColor = const Color(0xBB000000)
   }) : 
-  this.controller = (controller??DraggableCustomizedBtnNavyBarController())._initBadges(items, hiddenItems),
+  controller = (controller??DraggableCustomizedBtnNavyBarController())._initBadges(items, hiddenItems),
   super(key: key);
 
   @override
@@ -248,6 +248,7 @@ class _DraggableCustomizedBtnNavyBarState
 
   @override
   void initState() {
+    widget.controller._parent = this;
     _internalItems = widget.items;
     _internalHiddenItems = widget.hiddenItems;
     _all = [];
@@ -263,7 +264,6 @@ class _DraggableCustomizedBtnNavyBarState
     //////
 
     dragItemUpdateStream = StreamController<DragItemUpdate>();
-    widget.controller._initDragItemUpdate(dragItemUpdateStream);
     _scrollController = ScrollController();
     dragItemUpdateStream!.stream.listen((event) {
       setState(() {
@@ -925,7 +925,7 @@ class _DraggableCustomizedBtnNavyBarState
             : widget.unSelectedColorIcon,
         badgeTextColor: widget.badgeTextColor,
         badgeColor: widget.badgeColor,
-        badge: widget.controller._badge(item!.keyItem),
+        badge: widget.controller._getNotifier(item.keyItem),
         onTap: () => item.onTap!(item.keyItem),
         translate:
             _translateItemList.isNotEmpty ? _translateItemList[index] : .0,
