@@ -3,6 +3,8 @@ part of draggable_customized_btn_navy_bar;
 class DraggedMenuOption extends StatefulWidget {
   final IconData? iconData;
   final Color? colorIcon;
+  final Color? badgeColor;
+  final Color? badgeTextColor;
   final GestureTapCallback? onTap;
   final double? translate;
   final StatusDragged statusDragged;
@@ -15,6 +17,8 @@ class DraggedMenuOption extends StatefulWidget {
       {Key? key,
       this.iconData,
       this.colorIcon,
+      this.badgeColor,
+      this.badgeTextColor,
       this.onTap,
       this.translate,
       required this.statusDragged,
@@ -71,13 +75,13 @@ class DraggedMenuOptionState extends State<DraggedMenuOption> {
                   curve: Curves.ease,
                   transform:
                       Matrix4.translationValues(widget.translate!, .0, .0),
-                  child: MenuOption(widget.iconData, widget.colorIcon,
+                  child: MenuOption(widget.iconData, widget.colorIcon, widget.badgeColor, widget.badgeTextColor,
                       widget.onTap, !widget.settingVisible),
                 )
               : Container(
                   transform:
                       Matrix4.translationValues(widget.translate!, .0, .0),
-                  child: MenuOption(widget.iconData, widget.colorIcon,
+                  child: MenuOption(widget.iconData, widget.colorIcon, widget.badgeColor, widget.badgeTextColor,
                       widget.onTap, !widget.settingVisible),
                 ))
           : Container(
